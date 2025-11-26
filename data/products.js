@@ -36,11 +36,38 @@ class Product {
 
   getPrice() {
 
-  return `$${formatCurrency(this.priceCents)}`;
+    return `$${formatCurrency(this.priceCents)}`;
 
+  }
+
+  extraInfoHTML(){
+
+    return '';
   }
 }
 
+//This is Inheritance , this copies all the content of product and extends it specific to the class 
+class Clothing extends Product {
+
+  sizeChartLink;
+
+  constructor(productDetails){
+
+    super(productDetails); //Calls the constructor of the parent class
+    this.sizeChartLink = productDetails.sizeChartLink;
+
+  }
+
+  extraInfoHTML(){
+    // super.extraInfoHTML();
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">
+    Size chart
+    </a>
+    `;
+  }
+
+}
 
 export const products = [
   {
@@ -702,5 +729,10 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing'){
+
+    return new Clothing(productDetails);
+
+  }
   return new Product(productDetails);
 });
