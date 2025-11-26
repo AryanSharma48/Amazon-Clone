@@ -1,18 +1,18 @@
 class Cart {
 
-    cartItems = undefined;
-    localStorageKey = undefined;
+    cartItems;
+    #localStorageKey; //Private property with a # in front , can only be used in the constructor
 
     //USED TO RUN SETUP CODE FOR THE OBJECTS
-    constructor() {
-        this.localStorageKey = 'cart-oop';
-        this.loadFromStorage();
+    constructor(localStorageKey) {
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
 
     }
 
-    loadFromStorage() {
+    #loadFromStorage() {
         //'this' just takes whatever the name of the object is and uses it
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if (!this.cartItems || this.cartItems.length === 0) {
             this.cartItems =
@@ -30,7 +30,7 @@ class Cart {
     }
 
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     addToCart(productId) {
@@ -84,8 +84,8 @@ class Cart {
 
 
 
-const cart = new Cart();
-const businessCart = new Cart();
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
 
 console.log(cart);
