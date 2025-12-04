@@ -6,17 +6,30 @@ import { loadCart } from "../data/cart.js";
 // import '../data/backend-practice.js';
 
 async function loadPage() {
-    
-    await loadProductsFetch();
-    //await lets us write asynchronous code like normal code , and waits for the execution of the function 
-    //can only be used inside an async function 
+    try {
+        //throw 'error1';
+        //this throws an error and skips the rest of the code and directly executes the catch function    
 
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value3');
-        });
-    });
-    //the 'value3' gets returned to the variable value
+        await loadProductsFetch();
+        //await lets us write asynchronous code like normal code , and waits for the execution of the function 
+        //can only be used inside an async function 
+
+        const value = await new Promise((resolve, reject) => {
+            //throw 'error2';
+            loadCart(() => {
+                //reject('error3');
+                //reject() creates an error in the future
+                resolve('value3');
+            });
+        });//the 'value3' gets returned to the variable value
+
+    } catch (error) {
+        console.log('Unexpected error. Please try again later.')
+    }
+
+    //the code inside the 'try' gets checked for an error , and if their is an error the catch() function catches it and runs the code inside it 
+
+    
 
     renderOrderSummary();
     renderPaymentSummary();
