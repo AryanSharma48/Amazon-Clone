@@ -62,10 +62,11 @@ Simply open the index.html file in your browser or use Live Server in VS Code. �
 
 🔹 Future Improvements
 
-✅ Integrate database (MongoDB / Firebase) for persistent storage
-✅ Add search and filter options for products
-✅ Implement order tracking and payment gateway
-✅ Improve authentication and session handling
-✅ UI/UX refinements and animations
+- ✅ Integrate database (MongoDB / Firebase) for persistent storage  
+- ✅ Add search and filter options for products  
+- ✅ Implement order tracking and payment gateway  
+- ✅ Implement authentication and session handling  
+- ✅ UI/UX refinements and animations
+
 
 ✨ Made with ❤️ by Aryan Sharma while learning full-stack web development.
